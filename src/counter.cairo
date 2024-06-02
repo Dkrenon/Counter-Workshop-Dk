@@ -36,7 +36,7 @@ mod Counter {
         counter: u32, // --> Implemented on Step3
         kill_switch: ContractAddress, // --> Implemented on Step8
         #[substorage(v0)] 
-        ownable: OwnableComponent::Storage, //--> Implemented on Step6
+        ownable: OwnableComponent::Storage, //--> Implemented on Step12
     }
 
     #[constructor]
