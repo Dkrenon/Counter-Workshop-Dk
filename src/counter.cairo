@@ -36,14 +36,13 @@ mod Counter {
         counter: u32, // --> Implemented on Step3
         kill_switch: ContractAddress, // --> Implemented on Step8
         #[substorage(v0)] 
-        ownable: OwnableComponent::Storage, //--> Implemented on Step6
+        ownable: OwnableComponent::Storage, //--> Implemented on Step12
     }
 
     #[constructor]
-    fn constructor(ref self: ContractState, input: u32, ks_address: ContractAddress, initial_owner: ContractAddress )  {
+    fn constructor(ref self: ContractState, input: u32, ks_address: ContractAddress)  {
         self.counter.write(input);  // --> Implemented on Step5
-        self.kill_switch.write(ks_address);  // --> Implemented on Step8
-        self.ownable.initializer(initial_owner); // --> Implemented on Step13
+        self.kill_switch.write(ks_address);  // --> Implemented on Step8        
     }
 
     #[abi(embed_v0)]
@@ -55,10 +54,9 @@ mod Counter {
         fn increase_counter(ref self: ContractState) { 
             let ks_address = self.kill_switch.read(); // --> Implemented on Step9  
             if (IKillSwitchDispatcher { contract_address: ks_address }.is_active()) { // --> Implemented on Step9  
-                self.counter.read(); // --> Implemented on Step9
+                self.counter.read(); // --> Implemented on Step9. I run step10 with and without this line and it passed.
                 panic!("Kill Switch is active"); // --> Implemented on Step10                        
             } else {           
-                self.ownable.assert_only_owner(); // --> Implemented on Step14
                 self.counter.write(self.counter.read() + 1);  // --> Implemented on Step5
                 self.emit(CounterIncreased{counter: self.counter.read()});  // --> Implemented on Step6
             }
