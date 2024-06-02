@@ -55,10 +55,9 @@ mod Counter {
         fn increase_counter(ref self: ContractState) { 
             let ks_address = self.kill_switch.read(); // --> Implemented on Step9  
             if (IKillSwitchDispatcher { contract_address: ks_address }.is_active()) { // --> Implemented on Step9  
-                self.counter.read(); // --> Implemented on Step9
+                self.counter.read(); // --> Implemented on Step9. I run step10 with and without this line and it passed.
                 panic!("Kill Switch is active"); // --> Implemented on Step10                        
             } else {           
-                self.ownable.assert_only_owner(); // --> Implemented on Step14
                 self.counter.write(self.counter.read() + 1);  // --> Implemented on Step5
                 self.emit(CounterIncreased{counter: self.counter.read()});  // --> Implemented on Step6
             }
