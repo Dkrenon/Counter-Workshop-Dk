@@ -1,6 +1,6 @@
 # Dkrenon Resolution
 
-This is Dkrenons's version of the counter workshop provided by Starknet. The original steps are left below and all the branches have been left as well for testing their solution with the command `scarb test` from the step2 . Branch step15-js has a modification on the `deply.ts` file so that the variables on the constructor can match with the ones used on the `counter.cairo` file.
+This is Dkrenon's version of the counter workshop provided by Starknet. The original steps are left below and all the branches have been left as well for testing their solution with the command `scarb test` from the step2 . Branch step15-js has a modification on the `deply.ts` file so that the variables on the constructor can match with the ones used on the `counter.cairo` file.
 
 Please refer to the starknet repository to work through this yourself because the steps wont work right for you as the `.gitignore` file has been changed.
 
